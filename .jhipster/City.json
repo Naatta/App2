@@ -12,12 +12,8 @@
             "fieldName": "postCode",
             "fieldType": "Long",
             "fieldValidateRules": []
-        },
-        {
-            "fieldName": "country",
-            "fieldType": "String",
-            "fieldValidateRules": []
         }
+        
     ],
     "changelogDate": "20180830114803",
     "dto": "no",

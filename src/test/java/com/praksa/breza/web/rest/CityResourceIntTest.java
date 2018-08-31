@@ -45,9 +45,6 @@ public class CityResourceIntTest {
     private static final Long DEFAULT_POST_CODE = 1L;
     private static final Long UPDATED_POST_CODE = 2L;
 
-    private static final String DEFAULT_COUNTRY = "AAAAAAAAAA";
-    private static final String UPDATED_COUNTRY = "BBBBBBBBBB";
-
     @Autowired
     private CityRepository cityRepository;
 
@@ -88,8 +85,7 @@ public class CityResourceIntTest {
     public static City createEntity(EntityManager em) {
         City city = new City()
             .name(DEFAULT_NAME)
-            .postCode(DEFAULT_POST_CODE)
-            .country(DEFAULT_COUNTRY);
+            .postCode(DEFAULT_POST_CODE);
         return city;
     }
 
@@ -115,7 +111,6 @@ public class CityResourceIntTest {
         City testCity = cityList.get(cityList.size() - 1);
         assertThat(testCity.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testCity.getPostCode()).isEqualTo(DEFAULT_POST_CODE);
-        assertThat(testCity.getCountry()).isEqualTo(DEFAULT_COUNTRY);
     }
 
     @Test
@@ -149,8 +144,7 @@ public class CityResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(city.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-            .andExpect(jsonPath("$.[*].postCode").value(hasItem(DEFAULT_POST_CODE.intValue())))
-            .andExpect(jsonPath("$.[*].country").value(hasItem(DEFAULT_COUNTRY.toString())));
+            .andExpect(jsonPath("$.[*].postCode").value(hasItem(DEFAULT_POST_CODE.intValue())));
     }
     
 
@@ -166,8 +160,7 @@ public class CityResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(city.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
-            .andExpect(jsonPath("$.postCode").value(DEFAULT_POST_CODE.intValue()))
-            .andExpect(jsonPath("$.country").value(DEFAULT_COUNTRY.toString()));
+            .andExpect(jsonPath("$.postCode").value(DEFAULT_POST_CODE.intValue()));
     }
     @Test
     @Transactional
@@ -191,8 +184,7 @@ public class CityResourceIntTest {
         em.detach(updatedCity);
         updatedCity
             .name(UPDATED_NAME)
-            .postCode(UPDATED_POST_CODE)
-            .country(UPDATED_COUNTRY);
+            .postCode(UPDATED_POST_CODE);
 
         restCityMockMvc.perform(put("/api/cities")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -205,7 +197,6 @@ public class CityResourceIntTest {
         City testCity = cityList.get(cityList.size() - 1);
         assertThat(testCity.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testCity.getPostCode()).isEqualTo(UPDATED_POST_CODE);
-        assertThat(testCity.getCountry()).isEqualTo(UPDATED_COUNTRY);
     }
 
     @Test
