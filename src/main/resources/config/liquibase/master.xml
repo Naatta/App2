@@ -8,6 +8,7 @@
     <include file="config/liquibase/changelog/20180830103010_added_entity_Article.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180830114803_added_entity_City.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180831091134_added_entity_Client.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180831131705_added_entity_Type.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20180831091134_added_entity_constraints_Client.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->

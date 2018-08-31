@@ -3,7 +3,7 @@
     "brezaApp": {
         "article" : {
             "home": {
-                "title": "Articles",
+                "title": "Artikli",
                 "createLabel": "Kreiraj novi Article",
                 "createOrEditLabel": "Kreirajte ili izmenite Article"
             },
@@ -16,10 +16,10 @@
             "detail": {
                 "title": "Article"
             },
-            "name": "Name",
-            "amount": "Amount",
-            "articleNumber": "Article Number",
-            "price": "Price"
+            "name": "Ime",
+            "amount": "Kolicina",
+            "articleNumber": "Broj artikla",
+            "price": "Cena"
         }
     }
 }
