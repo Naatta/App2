@@ -2,6 +2,7 @@ package com.praksa.breza.domain;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -24,6 +25,14 @@ public class Article implements Serializable {
 
     @Column(name = "amount")
     private Double amount;
+
+    @NotNull
+    @Column(name = "article_number", nullable = false)
+    private String articleNumber;
+
+    @NotNull
+    @Column(name = "price", nullable = false)
+    private Double price;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -59,6 +68,32 @@ public class Article implements Serializable {
     public void setAmount(Double amount) {
         this.amount = amount;
     }
+
+    public String getArticleNumber() {
+        return articleNumber;
+    }
+
+    public Article articleNumber(String articleNumber) {
+        this.articleNumber = articleNumber;
+        return this;
+    }
+
+    public void setArticleNumber(String articleNumber) {
+        this.articleNumber = articleNumber;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public Article price(Double price) {
+        this.price = price;
+        return this;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -87,6 +122,8 @@ public class Article implements Serializable {
             "id=" + getId() +
             ", name='" + getName() + "'" +
             ", amount=" + getAmount() +
+            ", articleNumber='" + getArticleNumber() + "'" +
+            ", price=" + getPrice() +
             "}";
     }
 }

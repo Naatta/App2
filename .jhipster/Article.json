@@ -12,6 +12,20 @@
             "fieldName": "amount",
             "fieldType": "Double",
             "fieldValidateRules": []
+        },
+        {
+            "fieldName": "articleNumber",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "price",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
         }
     ],
     "changelogDate": "20180830103010",
