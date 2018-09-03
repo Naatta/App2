@@ -6,7 +6,7 @@
             "relationshipName": "city",
             "otherEntityName": "city",
             "relationshipType": "many-to-one",
-            "otherEntityField": "nname"
+            "otherEntityField": "name"
         }
     ],
     "fields": [

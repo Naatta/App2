@@ -6,6 +6,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { IClient } from 'app/shared/model/client.model';
 import { Principal } from 'app/core';
 import { ClientService } from './client.service';
+import { LocalDataSource } from '../../../../../../node_modules/ng2-smart-table';
 
 @Component({
     selector: 'jhi-client',
@@ -15,6 +16,26 @@ export class ClientComponent implements OnInit, OnDestroy {
     clients: IClient[];
     currentAccount: any;
     eventSubscriber: Subscription;
+    data: LocalDataSource;
+    settings = {
+        columns: {
+            id: {
+                title: 'ID'
+            },
+            name: {
+                title: 'name'
+            },
+            address: {
+                title: 'address'
+            },
+            phoneNumber: {
+                title: 'phoneNumber'
+            },
+            email: {
+                title: 'email'
+            }
+        }
+    };
 
     constructor(
         private clientService: ClientService,
@@ -27,6 +48,7 @@ export class ClientComponent implements OnInit, OnDestroy {
         this.clientService.query().subscribe(
             (res: HttpResponse<IClient[]>) => {
                 this.clients = res.body;
+                this.data = new LocalDataSource(res.body);
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
