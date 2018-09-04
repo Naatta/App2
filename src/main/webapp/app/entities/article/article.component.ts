@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
-
+import { Router } from '@angular/router';
 import { IArticle } from 'app/shared/model/article.model';
 import { Principal } from 'app/core';
 import { ArticleService } from './article.service';
@@ -17,9 +17,35 @@ export class ArticleComponent implements OnInit, OnDestroy {
     currentAccount: any;
     eventSubscriber: Subscription;
     settings = {
+        add: { addButtonContent: 'Create new article' },
+        actions: {
+            edit: false,
+            delete: false,
+            custom: [
+                {
+                    name: 'view',
+                    title: 'View '
+                },
+                {
+                    name: 'edit',
+                    title: 'Edit '
+                },
+                {
+                    name: 'delete',
+                    title: 'Delete '
+                },
+                {
+                    name: 'duplicate',
+                    title: 'Duplicate '
+                }
+            ]
+        },
+        mode: 'external',
+
         columns: {
             id: {
-                title: 'ID'
+                title: 'ID',
+                editable: false
             },
             name: {
                 title: 'Name'
@@ -39,7 +65,8 @@ export class ArticleComponent implements OnInit, OnDestroy {
         private articleService: ArticleService,
         private jhiAlertService: JhiAlertService,
         private eventManager: JhiEventManager,
-        private principal: Principal
+        private principal: Principal,
+        private router: Router
     ) {}
 
     loadAll() {
@@ -70,6 +97,20 @@ export class ArticleComponent implements OnInit, OnDestroy {
 
     registerChangeInArticles() {
         this.eventSubscriber = this.eventManager.subscribe('articleListModification', response => this.loadAll());
+    }
+    addNew() {
+        console.log('dodat novi artical');
+        this.router.navigate(['article/new']);
+    }
+
+    onCustom(event) {
+        if (event.action === 'viev') {
+            this.router.navigate(['article/' + event.data.id + '/edit']);
+        } else if (event.action === 'edit') {
+            this.router.navigate(['article/' + event.data.id + '/edit']);
+        } else {
+            this.router.navigate([{ outlets: { popup: 'article/' + event.data.id + '/delete' } }]);
+        }
     }
 
     private onError(errorMessage: string) {
